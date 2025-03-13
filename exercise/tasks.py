@@ -12,9 +12,14 @@ def a_times_b_plus_c(a: np.ndarray, b: np.ndarray, c: np.ndarray)-> np.ndarray:
     Returns:
         np.ndarray: 
     """
+   # if a.shape != b.shape or b.shape != c.shape:
+    #    raise ValueError("The dimensions of the input arrays are not the same.")
+    
+    return a * b + c
+
     raise NotImplementedError("Need to implement for task 1.1")
 
-def add_gaussian_noise(a: np.ndarray)-> np.ndarray:
+def add_gaussian_noise(a: np.ndarray, mu: float = 0, sigma: float = 1)-> np.ndarray:
     """
     Implement the function to add Gaussian noise to an image. The noise should have a mean of mu and a standard deviation of sigma.
 
@@ -26,19 +31,24 @@ def add_gaussian_noise(a: np.ndarray)-> np.ndarray:
     Returns:
         np.ndarray: 
     """
+
+    noise = np.random.normal(mu, sigma, a.shape)
+    return a + noise
+
     raise NotImplementedError("Need to implement for task 1.2")
 
-def expsq(x: np.ndarray, sigma: float)-> np.ndarray:
+def expsq(x: np.ndarray, sigma: float) -> np.ndarray:
     """
     Implement the function to compute the exponential square of the input x divided by the square of sigma.
 
     Args:
         x (np.ndarray): 
+        sigma (float):
 
     Returns:
         np.ndarray: 
     """
-    raise NotImplementedError("Need to implement for task 1.3")
+    return np.exp(-np.square(x) / np.square(sigma))
 
 def compute_sinc_of_sqrt_in_range(x_range: tuple[int, int], y_range: tuple[int, int]) -> np.ndarray:
     """
@@ -51,6 +61,11 @@ def compute_sinc_of_sqrt_in_range(x_range: tuple[int, int], y_range: tuple[int, 
     Returns:
         np.ndarray: 
     """
+    x = np.linspace(x_range[0], x_range[1], 100)
+    y = np.linspace(y_range[0], y_range[1], 100)
+    X, Y = np.meshgrid(x, y)
+    Z = np.sinc(np.sqrt(X**2 + Y**2))
+    return Z
     raise NotImplementedError("Need to implement for task 2.1")
 
 def get_A_M()->float:
